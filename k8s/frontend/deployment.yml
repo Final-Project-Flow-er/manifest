@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: frontend-container
-          image: tjddms/chaing-frontend:latest # 젠킨스가 빌드해서 푸시할 이미지
+          image: tjddms/chaing-frontend:15
           ports:
             - containerPort: 80 # Nginx 기본 포트
