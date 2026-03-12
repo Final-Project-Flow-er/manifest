@@ -7,7 +7,7 @@ metadata:
     kubernetes.io/ingress.class: nginx
 spec:
   rules:
-    - host: chaing-flower.com # 사용자가 접속할 실제 도메인
+    - host: chaing-flower.com
       http:
         paths:
           - path: /

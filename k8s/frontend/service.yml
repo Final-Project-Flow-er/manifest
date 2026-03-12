@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: frontend-service
 spec:
-  type: ClusterIP # 내부 통신용 (인그레스가 외부를 담당하므로)
+  type: ClusterIP
   selector:
     app: frontend
   ports:
