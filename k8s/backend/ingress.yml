@@ -9,8 +9,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-    - host: api.chaing-flower.com
-      http:
+    - http:
         paths:
           - path: /
             pathType: Prefix
