@@ -11,8 +11,8 @@ data:
   SPRING_DATASOURCE_DRIVER_CLASS_NAME: "org.mariadb.jdbc.Driver"
 
   # Redis 설정
-  SPRING_DATA_REDIS_HOST: "221.151.189.232"
-  SPRING_DATA_REDIS_PORT: "7006"
+  SPRING_DATA_REDIS_HOST: "master.chaing-redis.ozkxfl.apn2.cache.amazonaws.com"
+  SPRING_DATA_REDIS_PORT: "6379"
 
   # JWT 설정
   JWT_EXPIRATION: "3600000"
