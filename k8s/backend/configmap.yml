@@ -14,6 +14,7 @@ data:
   SPRING_DATA_REDIS_HOST: "master.chaing-redis.ozkxfl.apn2.cache.amazonaws.com"
   SPRING_DATA_REDIS_PORT: "6379"
   SPRING_DATA_REDIS_USERNAME: "chaing-user"
+  SPRING_DATA_REDIS_SSL: "true"
 
   # JWT 설정
   JWT_EXPIRATION: "3600000"
