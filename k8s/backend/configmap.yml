@@ -6,7 +6,7 @@ data:
   SPRING_PROFILES_ACTIVE: "dev"
 
   # 데이터베이스 설정
-  SPRING_DATASOURCE_URL: "jdbc:mariadb://chaing-db.cxm2i02o0y36.ap-northeast-2.rds.amazonaws.com:3306/chaing?sslMode=verify-ca&trustServerCertificate=true"
+  SPRING_DATASOURCE_URL: "jdbc:mariadb://chaing-db.cxm2i02o0y36.ap-northeast-2.rds.amazonaws.com:3306/chaing?sslMode=trust&trustServerCertificate=true"
   SPRING_DATASOURCE_USERNAME: "admin"
   SPRING_DATASOURCE_DRIVER_CLASS_NAME: "org.mariadb.jdbc.Driver"
 
