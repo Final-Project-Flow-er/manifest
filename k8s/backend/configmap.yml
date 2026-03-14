@@ -29,8 +29,8 @@ data:
   SPRING_MAIL_USERNAME: "rlatjddms030@gmail.com"
   APP_MAIL_FROM: "rlatjddms030@gmail.com"
   APP_MAIL_FROM_NAME: "CHAIN-G"
-  APP_URL_LOGIN: "http://k8s-default-frontend-76be4407a1-230010893.ap-northeast-2.elb.amazonaws.com/login"
+  APP_URL_LOGIN: "https://chaing.org/login"
 
   # MinIO 설정
-  MINIO_ENDPOINT: "http://minio-service:7003"
-  MINIO_ACCESS_KEY: "minioadmin"
+  MINIO_ENDPOINT: "https://img.chaing.org"
+  MINIO_ACCESS_KEY: "admin"
