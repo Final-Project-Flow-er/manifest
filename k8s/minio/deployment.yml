@@ -19,8 +19,8 @@ spec:
           args:
             - server
             - /data
-            - --console-address
-            - ":9001"
+            - --console-address=:9001
+            - --address=:9000
           env:
             - name: MINIO_ROOT_USER
               value: "admin"
