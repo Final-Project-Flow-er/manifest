@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: frontend-container
-          image: tjddms/chaing-frontend:26
+          image: tjddms/chaing-frontend:27
           ports:
             - containerPort: 80
           livenessProbe:
