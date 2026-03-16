@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: backend-container
-          image: tjddms/chaing-backend:127
+          image: 479699168320.dkr.ecr.ap-northeast-2.amazonaws.com/chaing-backend:latest
           ports:
             - containerPort: 8080
           envFrom:
