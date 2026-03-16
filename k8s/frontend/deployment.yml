@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: frontend-container
-          image: tjddms/chaing-frontend:39
+          image: 479699168320.dkr.ecr.ap-northeast-2.amazonaws.com/chaing-frontend:latest
           ports:
             - containerPort: 80
           livenessProbe:
