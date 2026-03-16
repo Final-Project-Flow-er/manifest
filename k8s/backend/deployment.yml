@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: backend-container
-          image: tjddms/chaing-backend:132
+          image: tjddms/chaing-backend:133
           ports:
             - containerPort: 8080
           envFrom:
