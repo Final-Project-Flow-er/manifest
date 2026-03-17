@@ -31,6 +31,6 @@ data:
   APP_URL_LOGIN: "https://chaing.org/login"
 
   # MinIO 설정
-  MINIO_ENDPOINT: "http://minio-internal-service:9000"
+  MINIO_ENDPOINT: "http://minio-service:9000"
   MINIO_EXTERNAL_URL: "https://img.chaing.org"
   MINIO_ACCESS_KEY: "admin"
