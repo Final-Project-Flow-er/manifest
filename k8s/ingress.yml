@@ -10,8 +10,6 @@ metadata:
     alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:ap-northeast-2:479699168320:certificate/239295f6-4dee-4129-b950-221b7511f970"
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
     alb.ingress.kubernetes.io/ssl-redirect: '443'
-    alb.ingress.kubernetes.io/healthcheck-path: /swagger-ui/index.html
-    alb.ingress.kubernetes.io/healthcheck-port: "8080"
 spec:
   ingressClassName: alb
   rules:
@@ -25,6 +23,13 @@ spec:
                 name: backend-service
                 port:
                   number: 8080
+          - path: /minio
+            pathType: Prefix
+            backend:
+              service:
+                name: minio-service
+                port:
+                  number: 9000
           - path: /
             pathType: Prefix
             backend:
