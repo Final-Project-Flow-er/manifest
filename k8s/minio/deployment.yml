@@ -29,6 +29,8 @@ spec:
                 secretKeyRef:
                   name: backend-secret
                   key: MINIO_SECRET_KEY
+            - name: MINIO_BROWSER_REDIRECT_URL
+              value: "https://img.chaing.org"
           ports:
             - containerPort: 9000
             - containerPort: 9001

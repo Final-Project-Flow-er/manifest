@@ -49,4 +49,4 @@ spec:
               service:
                 name: minio-service
                 port:
-                  number: 9001
+                  number: 9000
