@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: frontend-container
-          image: 479699168320.dkr.ecr.ap-northeast-2.amazonaws.com/chaing-frontend:53
+          image: 479699168320.dkr.ecr.ap-northeast-2.amazonaws.com/chaing-frontend:54
           ports:
             - containerPort: 80
           livenessProbe:
