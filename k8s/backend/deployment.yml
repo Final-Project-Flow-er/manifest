@@ -20,7 +20,7 @@ spec:
             - containerPort: 8080
           livenessProbe:
             httpGet:
-              path: /
+              path: /api/v1/auth/login
               port: 8080
             initialDelaySeconds: 80
             periodSeconds: 20
