@@ -18,6 +18,13 @@ spec:
           image: 479699168320.dkr.ecr.ap-northeast-2.amazonaws.com/chaing-backend:160
           ports:
             - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /api/v1/auth/login
+              port: 8080
+            initialDelaySeconds: 80
+            periodSeconds: 20
+            failureThreshold: 3
           envFrom:
             - configMapRef:
                 name: backend-config
