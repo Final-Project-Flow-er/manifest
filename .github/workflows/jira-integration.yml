@@ -1,15 +1,12 @@
 name: Create Jira issue
-
 on:
   issues:
     types:
       - opened
       - closed
-
 permissions:
   contents: read
   issues: write
-
 jobs:
   # ------------------------------------------------------------------
   # 1. 이슈 생성 시 실행 (Opened)
@@ -18,7 +15,6 @@ jobs:
     if: github.event.action == 'opened'
     name: Create Jira issue
     runs-on: ubuntu-latest
-
     steps:
       - name: Login
         uses: atlassian/gajira-login@v3
@@ -26,22 +22,22 @@ jobs:
           JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
           JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
           JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
-
       - name: Checkout main code
         uses: actions/checkout@v4
         with:
           ref: main
-
       # --------------------------------------------------------------
-      # Epic Key 추출 (이슈 body에서 DEV-숫자 형태 찾기)
+      # Epic Key 추출 (이슈 body에서 FLOW-숫자 형태 찾기)
+      # 환경변수로 분리하여 shell injection 방지
       # --------------------------------------------------------------
       - name: Extract Epic Key
         id: epic
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
         run: |
-          EPIC_KEY=$(echo "${{ github.event.issue.body }}" | grep -oE 'FLOW-[0-9]+' | head -n 1)
+          EPIC_KEY=$(echo "$ISSUE_BODY" | grep -oE 'FLOW-[0-9]+' | head -n 1)
           echo "EPIC_KEY=$EPIC_KEY" >> $GITHUB_OUTPUT
           echo "Detected Epic Key: $EPIC_KEY"
-
       - name: Convert markdown to Jira Syntax
         uses: peter-evans/jira2md@v1
         id: md2jira
@@ -49,14 +45,11 @@ jobs:
           input-text: |
             ### Github Issue Link
             - ${{ github.event.issue.html_url }}
-
             ### Epic
             - ${{ steps.epic.outputs.EPIC_KEY }}
-
             ---
             ${{ github.event.issue.body }}
           mode: md2jira
-
       # --------------------------------------------------------------
       # Jira 이슈 생성 + Epic 자동 귀속
       # --------------------------------------------------------------
@@ -74,17 +67,14 @@ jobs:
                 "key": "${{ steps.epic.outputs.EPIC_KEY }}"
               }
             }
-
       - name: Log created issue
         run: echo "Jira Issue ${{ steps.create.outputs.issue }} was created"
-
       - name: Update issue title
         uses: actions-cool/issues-helper@v3
         with:
           actions: 'update-issue'
           token: ${{ secrets.GITHUB_TOKEN }}
           title: '[${{ steps.create.outputs.issue }}] ${{ github.event.issue.title }}'
-
       - name: Add comment with Jira issue link
         uses: actions-cool/issues-helper@v3
         with:
@@ -95,7 +85,6 @@ jobs:
             🎫 **Jira Issue Created**
             - Epic: ${{ steps.epic.outputs.EPIC_KEY }}
             - Issue: [${{ steps.create.outputs.issue }}](${{ secrets.JIRA_BASE_URL }}/browse/${{ steps.create.outputs.issue }})
-
   # ------------------------------------------------------------------
   # 2. 이슈 닫힘 시 실행 (Closed)
   # ------------------------------------------------------------------
@@ -103,7 +92,6 @@ jobs:
     if: github.event.action == 'closed'
     name: Close Jira issue
     runs-on: ubuntu-latest
-
     steps:
       - name: Login
         uses: atlassian/gajira-login@v3
@@ -111,13 +99,11 @@ jobs:
           JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
           JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
           JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
-
       - name: Find Issue Key
         id: find
         uses: atlassian/gajira-find-issue-key@v3
         with:
           string: ${{ github.event.issue.title }}
-
       - name: Transition Issue to Done
         uses: atlassian/gajira-transition@v3
         with:
